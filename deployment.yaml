@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: nodeapp-deployment
 spec:
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: nodeapp
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: nodeapp-container
-        image: gcr.io/wideops-task-409315/nodeapp:nd
+        image: gcr.io/wideops-task-409315/nodeapp-deployment:nai
         ports:
         - containerPort: 8080
 ---
