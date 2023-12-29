@@ -1,11 +1,14 @@
 # Use an official Node runtime as a parent image
 FROM node:14
 
+# Create the directory and its parents if they don't exist
+RUN mkdir -p /usr/src/app
+
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
 # Copy package.json and package-lock.json to the working directory
-COPY package.json /usr/src/app/
+COPY package*.json /usr/src/app/
 
 # Install app dependencies
 RUN npm install
