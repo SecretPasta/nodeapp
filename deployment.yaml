@@ -14,9 +14,9 @@ spec:
     spec:
       containers:
       - name: nodeapp-container
-        image: gcr.io/wideops-task-409315/nodeapp-deployment:nai
+        image: gcr.io/wideops-task-409315/nodeapp-deploy:one
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
@@ -26,7 +26,9 @@ spec:
   selector:
     app: nodeapp
   ports:
-    - protocol: TCP
+    - name: http
+      protocol: TCP
       port: 80
-      targetPort: 8080
-  type: NodePort
+      targetPort: 3000
+  type: LoadBalancer
+
