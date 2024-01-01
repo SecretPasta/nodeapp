@@ -17,8 +17,8 @@ app.use(express.urlencoded({ extended: false }));
 //   .catch(err => console.log(err));
 
 const replicaSet = 'wideops'; // replica set name
-const mongoNodes = ['mongo-1:27017', '"10.208.0.7:27017', '10.208.0.8:27017']; //VMs and ports
-const connectionString = `mongodb://${mongoNodes.join(',')}/${replicaSet}`;
+const mongoNodes = ['34.165.58.237:27017', '34.165.84.119:27017', '34.165.143.156:27017']; //VMs and ports
+const connectionString = `mongodb://${mongoNodes.join(',')}/?replicaSet=${replicaSet}`;
 
 // Connect to MongoDB
 mongoose
