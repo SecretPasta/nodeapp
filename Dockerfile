@@ -13,6 +13,9 @@ COPY package*.json /usr/src/app/
 # Install app dependencies
 RUN npm install
 
+# Explicitly copy the nodeapp.js file to the working directory
+COPY nodeapp.js /usr/src/app/
+
 # Bundle app source
 COPY . .
 

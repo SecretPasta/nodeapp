@@ -2,9 +2,17 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: basic-ingress
+  namespace: nodeapp2
+  annotations:
+    kubernetes.io/ingress.class: "gce"  # Specify the GCP controller
 spec:
-  defaultBackend:
-    service:
-      name: web
-      port:
-        number: 8080
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: nodeapp-service-new
+            port:
+              number: 80
