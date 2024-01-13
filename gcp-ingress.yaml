@@ -16,7 +16,7 @@ spec:
           service:
             name: nodeapp-service-new
             port:
-              number: 8080
+              number: 3000
   tls:
   - hosts:
     - nodeapp.gotdns.ch
