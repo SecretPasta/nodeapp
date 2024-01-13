@@ -1,0 +1,63 @@
+Commands:
+
+Clone Repo:
+git clone https://github.com/your-username/your-repo.git
+cd your-repo
+
+//Have a Dockerfile and package.json in the repo
+
+Build Docker image:
+docker build -t gcr.io/your-project-id/your-image-name:tag .
+
+Push Docker Image to Google Container Registry:
+
+gcloud auth configure-docker
+docker push gcr.io/your-project-id/your-image-name:tag
+
+Create deployment.yaml & run command:
+kubectl apply -f deployment.yaml
+
+check pods status:
+kubectl get pods
+
+Expose deployment:
+kubectl expose deployment your-deployment --type=LoadBalancer --port=80 --target-port=8080
+
+see service and external IP:
+kubectl get services -w
+
+Add HPA:
+kubectl apply -f nginx-hpa.yaml
+
+see logs
+kubectl logs <pod-name>
+
+delete deployment:
+kubectl delete deployment DEPLOYMENT_NAME
+
+delete image:
+gcloud container images delete gcr.io/PROJECT_ID/IMAGE_NAME:TAG
+
+connect to a pod:
+kubectl exec -it <pod-name> -- /bin/bash
+
+describe the ingress:
+kubectl describe ingress basic-ingress
+
+describe the deployment:
+kubectl describe deployment <deployment-name>
+
+delete ingress:
+kubectl delete ingress nodeapp-ingress
+
+Create key:
+openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=nodeapp.gotdns.ch"
+
+save secret:
+kubectl create secret tls nodeapp-tls --cert=tls.crt --key=tls.key
+
+create namespace:
+kubectl create namespace YOUR_NAMESPACE
+
+switch namespace:
+kubectl config set-context --current --namespace=YOUR_NAMESPACE
